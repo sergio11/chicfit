@@ -53,7 +53,7 @@ internal class OutfitRepositoryImpl(
             }
         } catch (ex: CreateOutfitRemoteDataException) {
             ex.printStackTrace()
-            throw SaveOutfitException("An error occurred when trying to save artwork", ex)
+            throw SaveOutfitException("An error occurred when trying to save outfit", ex)
         }
     }
 
@@ -77,7 +77,7 @@ internal class OutfitRepositoryImpl(
                 outfitDataSource.deleteById(userId = userId, id = id)
             } catch (ex: DeleteOutfitByIdRemoteDataException) {
                 ex.printStackTrace()
-                throw DeleteOutfitByIdException("An error occurred when trying to delete the artwork", ex)
+                throw DeleteOutfitByIdException("An error occurred when trying to delete the outfit", ex)
             }
         }
     }
@@ -89,7 +89,7 @@ internal class OutfitRepositoryImpl(
                 .let(outfitMapper::mapInToOut)
         } catch (ex: FetchOutfitByIdRemoteDataException) {
             ex.printStackTrace()
-            throw FetchOutfitByIdException("An error occurred when trying to fetch the artwork data", ex)
+            throw FetchOutfitByIdException("An error occurred when trying to fetch the outfit data", ex)
         }
     }
 

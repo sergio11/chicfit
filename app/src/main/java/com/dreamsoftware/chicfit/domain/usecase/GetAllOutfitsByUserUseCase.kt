@@ -5,11 +5,11 @@ import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.repository.IOutfitRepository
 import com.dreamsoftware.chicfit.domain.repository.IUserRepository
 
-class GetAllArtworksByUserUseCase(
+class GetAllOutfitsByUserUseCase(
     private val userRepository: IUserRepository,
-    private val artworkRepository: IOutfitRepository
+    private val outfitRepository: IOutfitRepository
 ) : BrownieUseCase<List<OutfitBO>>() {
 
     override suspend fun onExecuted(): List<OutfitBO> =
-        artworkRepository.fetchAllByUserId(userId = userRepository.getUserAuthenticatedUid())
+        outfitRepository.fetchAllByUserId(userId = userRepository.getUserAuthenticatedUid())
 }

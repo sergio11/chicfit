@@ -11,7 +11,7 @@ class SignUpRemoteDataException(message: String? = null, cause: Throwable? = nul
 class SavePictureRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 class DeletePictureRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 
-// Artwork Data Source
+// Outfit Data Source
 class SearchOutfitRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 class CreateOutfitRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 class AddOutfitMessageRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)

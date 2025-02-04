@@ -11,7 +11,7 @@ import com.dreamsoftware.chicfit.domain.model.OutfitMessageBO
 import com.dreamsoftware.chicfit.domain.usecase.AddOutfitMessageUseCase
 import com.dreamsoftware.chicfit.domain.usecase.EndUserSpeechCaptureUseCase
 import com.dreamsoftware.chicfit.domain.usecase.GetAssistantMutedStatusUseCase
-import com.dreamsoftware.chicfit.domain.usecase.GetArtworkByIdUseCase
+import com.dreamsoftware.chicfit.domain.usecase.GetOutfitByIdUseCase
 import com.dreamsoftware.chicfit.domain.usecase.StopTextToSpeechUseCase
 import com.dreamsoftware.chicfit.domain.usecase.TextToSpeechUseCase
 import com.dreamsoftware.chicfit.domain.usecase.TranscribeUserQuestionUseCase
@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
-    private val getArtworkByIdUseCase: GetArtworkByIdUseCase,
+    private val getOutfitByIdUseCase: GetOutfitByIdUseCase,
     private val transcribeUserQuestionUseCase: TranscribeUserQuestionUseCase,
     private val endUserSpeechCaptureUseCase: EndUserSpeechCaptureUseCase,
     private val textToSpeechUseCase: TextToSpeechUseCase,
@@ -40,9 +40,9 @@ class ChatViewModel @Inject constructor(
             showLoadingState = false
         )
         executeUseCaseWithParams(
-            useCase = getArtworkByIdUseCase,
-            params = GetArtworkByIdUseCase.Params(id = id),
-            onSuccess = ::onGetArtworkCompletedSuccessfully,
+            useCase = getOutfitByIdUseCase,
+            params = GetOutfitByIdUseCase.Params(id = id),
+            onSuccess = ::onGetOutfitCompletedSuccessfully,
             onMapExceptionToState = ::onMapExceptionToState
         )
     }
@@ -115,16 +115,16 @@ class ChatViewModel @Inject constructor(
         executeUseCaseWithParams(
             useCase = addOutfitMessageUseCase,
             params = AddOutfitMessageUseCase.Params(
-                outfitId = uiState.value.artworkId,
+                outfitId = uiState.value.outfitId,
                 question = transcription
             ),
-            onSuccess = ::onGetArtworkCompletedSuccessfully,
+            onSuccess = ::onGetOutfitCompletedSuccessfully,
             onMapExceptionToState = ::onMapExceptionToState
         )
     }
 
-    private fun onGetArtworkCompletedSuccessfully(outfitBO: OutfitBO) {
-        updateState { it.copy(artworkId = outfitBO.uid, messageList = outfitBO.messages) }
+    private fun onGetOutfitCompletedSuccessfully(outfitBO: OutfitBO) {
+        updateState { it.copy(outfitId = outfitBO.uid, messageList = outfitBO.messages) }
         doOnUiState {
             if(!isAssistantMuted) {
                 speakMessage(text = outfitBO.messages.last().text)
@@ -165,7 +165,7 @@ class ChatViewModel @Inject constructor(
 data class ChatUiState(
     override val isLoading: Boolean = false,
     override val errorMessage: String? = null,
-    val artworkId: String = String.EMPTY,
+    val outfitId: String = String.EMPTY,
     val infoMessage: String = String.EMPTY,
     val isAssistantResponseLoading: Boolean = false,
     val isAssistantMuted: Boolean = false,

@@ -5,7 +5,7 @@ import com.dreamsoftware.brownie.core.IBrownieErrorMapper
 import com.dreamsoftware.chicfit.ui.screens.account.signin.SignInScreenSimpleErrorMapper
 import com.dreamsoftware.chicfit.ui.screens.account.signup.SignUpScreenSimpleErrorMapper
 import com.dreamsoftware.chicfit.ui.screens.chat.ChatSimpleErrorMapper
-import com.dreamsoftware.chicfit.ui.screens.detail.ArtworkDetailScreenSimpleErrorMapper
+import com.dreamsoftware.chicfit.ui.screens.detail.OutfitDetailScreenSimpleErrorMapper
 import com.dreamsoftware.chicfit.ui.screens.home.HomeSimpleErrorMapper
 import dagger.Module
 import dagger.Provides
@@ -52,18 +52,18 @@ class UiModule {
 
     @Provides
     @ViewModelScoped
-    @ArtworkDetailErrorMapper
-    fun provideArtworkDetailErrorMapper(
+    @OutfitDetailErrorMapper
+    fun provideOutfitDetailErrorMapper(
         @ApplicationContext context: Context
     ): IBrownieErrorMapper =
-        ArtworkDetailScreenSimpleErrorMapper(context = context)
+        OutfitDetailScreenSimpleErrorMapper(context = context)
 
 
     @Provides
     @ViewModelScoped
-    @CreateArtworkErrorMapper
-    fun provideCreateArtworkScreenSimpleErrorMapper(
+    @CreateOutfitErrorMapper
+    fun provideCreateOutfitScreenSimpleErrorMapper(
         @ApplicationContext context: Context
     ): IBrownieErrorMapper =
-        ArtworkDetailScreenSimpleErrorMapper(context = context)
+        OutfitDetailScreenSimpleErrorMapper(context = context)
 }

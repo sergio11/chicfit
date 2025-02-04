@@ -38,7 +38,7 @@ import com.dreamsoftware.brownie.component.BrownieTextTypeEnum
 import com.dreamsoftware.brownie.component.screen.BrownieScreenContent
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.R
-import com.dreamsoftware.chicfit.ui.screens.core.CommonArtworkImage
+import com.dreamsoftware.chicfit.ui.screens.core.CommonOutfitImage
 
 @Composable
 fun HomeScreenContent(
@@ -69,14 +69,14 @@ fun HomeScreenContent(
                 }
             }
             BrownieDialog(
-                isVisible = confirmDeleteArtwork != null,
+                isVisible = confirmDeleteOutfit != null,
                 mainLogoRes = R.drawable.main_logo,
                 titleRes = R.string.delete_outfit_dialog_title,
                 descriptionRes = R.string.delete_outfit_dialog_description,
                 cancelRes = R.string.delete_outfit_dialog_cancel,
                 acceptRes = R.string.delete_outfit_dialog_accept,
-                onCancelClicked = actionListener::onDeleteArtworkCancelled,
-                onAcceptClicked = actionListener::onDeleteArtworkConfirmed,
+                onCancelClicked = actionListener::onDeleteOutfitCancelled,
+                onAcceptClicked = actionListener::onDeleteOutfitConfirmed,
             )
             BrownieScreenContent(
                 hasTopBar = false,
@@ -124,13 +124,13 @@ fun HomeScreenContent(
                     }
                     if (isLoading) {
                         BrownieColumnProgressIndicator(textIndicatorRes = R.string.content_loading_placeholder)
-                    } else if (artworkList.isEmpty()) {
+                    } else if (outfitList.isEmpty()) {
                         BrownieColumnPlaceHolder(
                             titleRes = R.string.nothing_found,
                             iconRes = R.drawable.ic_no_data_found
                         )
                     } else {
-                        ArtworkList(
+                        OutfitList(
                             uiState = uiState,
                             actionListener = actionListener,
                             nestedScrollConnection = nestedScrollConnection
@@ -145,7 +145,7 @@ fun HomeScreenContent(
 
 
 @Composable
-private fun ArtworkList(
+private fun OutfitList(
     uiState: HomeUiState,
     actionListener: HomeScreenActionListener,
     nestedScrollConnection: NestedScrollConnection
@@ -161,21 +161,21 @@ private fun ArtworkList(
                     )
                     .nestedScroll(nestedScrollConnection),
             ) {
-                items(artworkList.size) { idx ->
-                    val artwork = artworkList[idx]
+                items(outfitList.size) { idx ->
+                    val outfit = outfitList[idx]
                     BrownieCard(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(10.dp)
                             .height(250.dp)
                             .clickable {
-                                actionListener.onArtworkClicked(artwork)
+                                actionListener.onOutfitClicked(outfit)
                             },
                         border = BorderStroke(5.dp, secondary)
                     ) {
-                        CommonArtworkImage(
+                        CommonOutfitImage(
                             modifier = Modifier.fillMaxSize(),
-                            imageUrl = artwork.imageUrl
+                            imageUrl = outfit.imageUrl
                         )
                         Row(
                             modifier = Modifier
@@ -190,15 +190,15 @@ private fun ArtworkList(
                                 iconTintColor = primary,
                                 iconRes = R.drawable.ic_detail
                             ) {
-                                actionListener.onArtworkDetailClicked(artwork)
+                                actionListener.onOutfitDetailClicked(outfit)
                             }
                             BrownieIconButton(
                                 containerSize = 40.dp,
                                 containerColor = onPrimary,
                                 iconTintColor = primary,
-                                iconRes = R.drawable.ic_delete_artwork
+                                iconRes = R.drawable.ic_delete
                             ) {
-                                actionListener.onArtworkDeleted(artwork)
+                                actionListener.onOutfitDeleted(outfit)
                             }
                         }
                         BrownieText(
@@ -208,7 +208,7 @@ private fun ArtworkList(
                                 .padding(horizontal = 15.dp, vertical = 20.dp)
                                 .align(Alignment.BottomStart),
                             type = BrownieTextTypeEnum.LABEL_MEDIUM,
-                            titleText = artwork.question,
+                            titleText = outfit.question,
                             textAlign = TextAlign.Center,
                             maxLines = 2,
                             textBold = true,

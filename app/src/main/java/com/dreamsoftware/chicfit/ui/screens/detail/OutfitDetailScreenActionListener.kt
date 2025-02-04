@@ -2,10 +2,10 @@ package com.dreamsoftware.chicfit.ui.screens.detail
 
 import com.dreamsoftware.brownie.core.IBrownieScreenActionListener
 
-interface ArtworkDetailScreenActionListener: IBrownieScreenActionListener {
+interface OutfitDetailScreenActionListener: IBrownieScreenActionListener {
     fun onBackPressed()
     fun onOpenChatClicked()
-    fun onArtworkDeleted()
+    fun onOutfitDeleted()
     fun onDeleteConfirmed()
     fun onDeleteCancelled()
 }

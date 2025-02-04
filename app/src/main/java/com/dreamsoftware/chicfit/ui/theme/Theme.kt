@@ -71,7 +71,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
-fun ChicfitTheme(content: @Composable () -> Unit) {
+fun ChicFitTheme(content: @Composable () -> Unit) {
     BrownieTheme(
         lightColorScheme = LightColorScheme,
         darkColorScheme = DarkColorScheme,

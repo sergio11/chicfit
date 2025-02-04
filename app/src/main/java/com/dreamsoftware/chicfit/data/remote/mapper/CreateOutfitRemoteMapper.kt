@@ -6,7 +6,7 @@ import com.google.firebase.Timestamp
 import java.util.Date
 import java.util.UUID
 
-internal class CreateArtworkRemoteMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> {
+internal class CreateOutfitRemoteMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> {
 
     private companion object {
         const val UID_KEY = "uid"

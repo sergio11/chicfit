@@ -6,8 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.dreamsoftware.chicfit.ui.navigation.Screens
 import com.dreamsoftware.chicfit.ui.screens.chat.ChatScreen
-import com.dreamsoftware.chicfit.ui.screens.create.CreateArtworkScreen
-import com.dreamsoftware.chicfit.ui.screens.detail.ArtworkDetailScreen
+import com.dreamsoftware.chicfit.ui.screens.create.CreateOutfitScreen
+import com.dreamsoftware.chicfit.ui.screens.detail.OutfitDetailScreen
 import com.dreamsoftware.chicfit.ui.screens.home.HomeScreen
 import com.dreamsoftware.chicfit.ui.screens.settings.SettingsScreen
 
@@ -34,10 +34,10 @@ fun NavGraphBuilder.HomeNavigationGraph(
         }
 
         composable(
-            route = Screens.Main.Home.CreateArtwork.route
+            route = Screens.Main.Home.CreateOutfit.route
         ) {
             with(navController) {
-                CreateArtworkScreen(
+                CreateOutfitScreen(
                     onGoToChat = {
                         popBackStack()
                         navigate(Screens.Main.Home.Chat.buildRoute(it))
@@ -55,7 +55,7 @@ fun NavGraphBuilder.HomeNavigationGraph(
             navBackStackEntry.arguments?.let { args ->
                 Screens.Main.Home.Detail.parseArgs(args)?.let {
                     with(navController) {
-                        ArtworkDetailScreen(
+                        OutfitDetailScreen(
                             args = it,
                             onGoToChat = {
                                 navigate(Screens.Main.Home.Chat.buildRoute(it))
