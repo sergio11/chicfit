@@ -1,5 +1,7 @@
 # ChicFit - **Effortless fashion advice tailored just for you.** 👚🌟
 
+<img width="auto" height="200px" align="left" src="doc/main_logo.png" />
+
 ChicFit is a revolutionary mobile application powered by AI, designed to give you personalized fashion advice with just a snap! Capture photos of your clothes and let ChicFit’s advanced AI suggest the perfect outfits, provide style recommendations, and even guide you on whether your clothes are suitable for specific occasions. Whether you're getting ready for a casual day or dressing up for a special event, ChicFit makes your fashion choices smarter and easier than ever.
 
 <p align="center">
