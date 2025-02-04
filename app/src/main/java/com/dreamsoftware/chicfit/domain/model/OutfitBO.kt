@@ -1,10 +1,13 @@
 package com.dreamsoftware.chicfit.domain.model
 
-data class CreateArtworkBO(
+import java.util.Date
+
+data class OutfitBO(
     val uid: String,
     val userId: String,
     val imageUrl: String,
     val imageDescription: String,
+    val createAt: Date,
     val question: String,
-    val answer: String
+    val messages: List<OutfitMessageBO>
 )

@@ -1,7 +1,7 @@
 package com.dreamsoftware.chicfit.domain.model
 
-data class ArtworkMessageBO(
+data class OutfitMessageBO(
     val uid: String,
-    val role: ArtworkMessageRoleEnum,
+    val role: OutfitMessageRoleEnum,
     val text: String
 )

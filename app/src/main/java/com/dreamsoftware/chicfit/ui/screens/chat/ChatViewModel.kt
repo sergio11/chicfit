@@ -6,9 +6,9 @@ import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.di.ChatErrorMapper
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
-import com.dreamsoftware.chicfit.domain.model.ArtworkMessageBO
-import com.dreamsoftware.chicfit.domain.usecase.AddArtworkMessageUseCase
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
+import com.dreamsoftware.chicfit.domain.model.OutfitMessageBO
+import com.dreamsoftware.chicfit.domain.usecase.AddOutfitMessageUseCase
 import com.dreamsoftware.chicfit.domain.usecase.EndUserSpeechCaptureUseCase
 import com.dreamsoftware.chicfit.domain.usecase.GetAssistantMutedStatusUseCase
 import com.dreamsoftware.chicfit.domain.usecase.GetArtworkByIdUseCase
@@ -27,7 +27,7 @@ class ChatViewModel @Inject constructor(
     private val endUserSpeechCaptureUseCase: EndUserSpeechCaptureUseCase,
     private val textToSpeechUseCase: TextToSpeechUseCase,
     private val stopTextToSpeechUseCase: StopTextToSpeechUseCase,
-    private val addArtworkMessageUseCase: AddArtworkMessageUseCase,
+    private val addOutfitMessageUseCase: AddOutfitMessageUseCase,
     private val updateAssistantMutedStatusUseCase: UpdateAssistantMutedStatusUseCase,
     private val getAssistantMutedStatusUseCase: GetAssistantMutedStatusUseCase,
     @ChatErrorMapper private val errorMapper: IBrownieErrorMapper
@@ -113,9 +113,9 @@ class ChatViewModel @Inject constructor(
     private fun onListenForTranscriptionCompleted(transcription: String) {
         updateState { it.copy(isListening = false) }
         executeUseCaseWithParams(
-            useCase = addArtworkMessageUseCase,
-            params = AddArtworkMessageUseCase.Params(
-                artworkId = uiState.value.artworkId,
+            useCase = addOutfitMessageUseCase,
+            params = AddOutfitMessageUseCase.Params(
+                outfitId = uiState.value.artworkId,
                 question = transcription
             ),
             onSuccess = ::onGetArtworkCompletedSuccessfully,
@@ -123,11 +123,11 @@ class ChatViewModel @Inject constructor(
         )
     }
 
-    private fun onGetArtworkCompletedSuccessfully(artworkBO: ArtworkBO) {
-        updateState { it.copy(artworkId = artworkBO.uid, messageList = artworkBO.messages) }
+    private fun onGetArtworkCompletedSuccessfully(outfitBO: OutfitBO) {
+        updateState { it.copy(artworkId = outfitBO.uid, messageList = outfitBO.messages) }
         doOnUiState {
             if(!isAssistantMuted) {
-                speakMessage(text = artworkBO.messages.last().text)
+                speakMessage(text = outfitBO.messages.last().text)
             }
         }
     }
@@ -172,7 +172,7 @@ data class ChatUiState(
     val isAssistantSpeaking: Boolean = false,
     val isListening: Boolean = false,
     val lastQuestion: String = String.EMPTY,
-    val messageList: List<ArtworkMessageBO> = emptyList()
+    val messageList: List<OutfitMessageBO> = emptyList()
 ): UiState<ChatUiState>(isLoading, errorMessage) {
     override fun copyState(isLoading: Boolean, errorMessage: String?): ChatUiState =
         copy(isLoading = isLoading, errorMessage = errorMessage)

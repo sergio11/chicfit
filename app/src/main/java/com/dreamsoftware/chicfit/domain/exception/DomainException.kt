@@ -12,12 +12,12 @@ class SignInException(message: String? = null, cause: Throwable? = null): UserDa
 class SignUpException(message: String? = null, cause: Throwable? = null): UserDataException(message, cause)
 class CloseSessionException(message: String? = null, cause: Throwable? = null): UserDataException(message, cause)
 
-class SearchArtworkException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
-class AddArtworkMessageException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
-class SaveArtworkException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
-class FetchArtworkByIdException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
-class FetchAllArtworkException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
-class DeleteArtworkByIdException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class SearchOutfitException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class AddOutfitMessageException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class SaveOutfitException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class FetchOutfitByIdException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class FetchAllOutfitException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
+class DeleteOutfitByIdException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
 
 class SavePictureException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)
 class DeletePictureException(message: String? = null, cause: Throwable? = null): DomainRepositoryException(message, cause)

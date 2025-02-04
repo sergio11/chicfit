@@ -46,13 +46,13 @@ import com.dreamsoftware.brownie.component.BrownieType
 import com.dreamsoftware.brownie.component.screen.BrownieScreenContent
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.R
-import com.dreamsoftware.chicfit.domain.model.ArtworkMessageBO
-import com.dreamsoftware.chicfit.domain.model.ArtworkMessageRoleEnum
+import com.dreamsoftware.chicfit.domain.model.OutfitMessageBO
+import com.dreamsoftware.chicfit.domain.model.OutfitMessageRoleEnum
 import com.dreamsoftware.chicfit.ui.components.AnimatedMicButtonWithTranscript
 import com.dreamsoftware.chicfit.ui.components.ChatMessageCard
 import com.dreamsoftware.chicfit.ui.components.LoadingDialog
 import com.dreamsoftware.chicfit.ui.components.Role
-import com.dreamsoftware.chicfit.ui.theme.ArtifyTheme
+import com.dreamsoftware.chicfit.ui.theme.ChicfitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -174,7 +174,7 @@ fun ChatScreenContent(
 @Composable
 private fun ChatMessagesList(
     modifier: Modifier = Modifier,
-    messageList: List<ArtworkMessageBO>
+    messageList: List<OutfitMessageBO>
 ) {
     val lazyListState = rememberLazyListState()
     if(messageList.isNotEmpty()) {
@@ -195,7 +195,7 @@ private fun ChatMessagesList(
                 ChatMessageCard(
                     modifier = Modifier
                         .align(
-                            if (chatMessage.role == ArtworkMessageRoleEnum.USER) {
+                            if (chatMessage.role == OutfitMessageRoleEnum.USER) {
                                 Alignment.CenterEnd
                             } else {
                                 Alignment.CenterStart
@@ -203,7 +203,7 @@ private fun ChatMessagesList(
                         )
                         .widthIn(max = this.maxWidth / 1.5f),
                     messageContent = chatMessage.text,
-                    role = if (chatMessage.role == ArtworkMessageRoleEnum.USER) {
+                    role = if (chatMessage.role == OutfitMessageRoleEnum.USER) {
                         Role.USER
                     }  else {
                         Role.RESPONDER
@@ -285,7 +285,7 @@ private class ChatScreenHaptics(
 @PreviewDynamicColors
 @Composable
 private fun ChatScreenPreview() {
-    ArtifyTheme {
+    ChicfitTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

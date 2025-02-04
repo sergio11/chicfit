@@ -1,44 +1,44 @@
 package com.dreamsoftware.chicfit.domain.usecase
 
 import com.dreamsoftware.brownie.core.BrownieUseCaseWithParams
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.model.ResolveQuestionBO
-import com.dreamsoftware.chicfit.domain.model.CreateArtworkBO
+import com.dreamsoftware.chicfit.domain.model.CreateOutfitBO
 import com.dreamsoftware.chicfit.domain.repository.IImageRepository
-import com.dreamsoftware.chicfit.domain.repository.IArtworkRepository
+import com.dreamsoftware.chicfit.domain.repository.IOutfitRepository
 import com.dreamsoftware.chicfit.domain.repository.IMultiModalLanguageModelRepository
 import com.dreamsoftware.chicfit.domain.repository.IUserRepository
 import java.util.UUID
 
 /**
- * Use case for creating a new Artwork entry.
+ * Use case for creating a new outfit entry.
  * This involves saving an image, generating an answer using a multi-modal language model,
- * and then creating an Artwork record with the generated data.
+ * and then creating an outfit record with the generated data.
  *
  * @param userRepository Repository for user-related operations.
  * @param imageRepository Repository for image-related operations.
- * @param artworkRepository Repository for Artwork records.
+ * @param outfitRepository Repository for outfit records.
  * @param multiModalLanguageModelRepository Repository for multi-modal language model interactions.
  */
 class CreateArtworkUseCase(
     private val userRepository: IUserRepository,
     private val imageRepository: IImageRepository,
-    private val artworkRepository: IArtworkRepository,
+    private val outfitRepository: IOutfitRepository,
     private val multiModalLanguageModelRepository: IMultiModalLanguageModelRepository
-) : BrownieUseCaseWithParams<CreateArtworkUseCase.Params, ArtworkBO>() {
+) : BrownieUseCaseWithParams<CreateArtworkUseCase.Params, OutfitBO>() {
 
     /**
-     * Executes the use case to create a new artwork record.
+     * Executes the use case to create a new outfit record.
      *
      * @param params Parameters containing the image URL and the user's question.
-     * @return The newly created artwork business object (ArtworkBO).
+     * @return The newly created outfit business object (OutfitBO).
      */
-    override suspend fun onExecuted(params: Params): ArtworkBO = with(params) {
-        // Generate a unique ID for the artwork entry
-        val artworkId = UUID.randomUUID().toString()
+    override suspend fun onExecuted(params: Params): OutfitBO = with(params) {
+        // Generate a unique ID for the outfit entry
+        val outfitId = UUID.randomUUID().toString()
 
         // Save the image and get the new image URL
-        val newImageUrl = imageRepository.save(path = imageUrl, name = artworkId)
+        val newImageUrl = imageRepository.save(path = imageUrl, name = outfitId)
 
         // Generate a description for the image
         val imageDescription = multiModalLanguageModelRepository.generateImageDescription(newImageUrl)
@@ -55,9 +55,9 @@ class CreateArtworkUseCase(
         // Get the authenticated user's ID
         val userId = userRepository.getUserAuthenticatedUid()
 
-        // Create the Artwork entry
-        val artworkBO = CreateArtworkBO(
-            uid = artworkId,
+        // Create the Outfit entry
+        val outfitBO = CreateOutfitBO(
+            uid = outfitId,
             userId = userId,
             imageUrl = newImageUrl,
             imageDescription = imageDescription,
@@ -65,8 +65,8 @@ class CreateArtworkUseCase(
             answer = answer
         )
 
-        // Save the artwork entry
-        artworkRepository.create(artworkBO)
+        // Save the Outfit entry
+        outfitRepository.create(outfitBO)
     }
 
     /**

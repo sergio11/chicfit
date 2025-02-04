@@ -1,12 +1,12 @@
 package com.dreamsoftware.chicfit.data.remote.dto
 
-import com.google.firebase.Timestamp
-
-data class ArtworkDTO(
+data class CreateOutfitDTO(
     val uid: String,
     val userId: String,
     val imageUrl: String,
     val imageDescription: String,
-    val createAt: Timestamp,
-    val messages: List<ArtworkMessageDTO>
+    val question: String,
+    val questionRole: String,
+    val answer: String,
+    val answerRole: String
 )

@@ -6,7 +6,7 @@ import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.di.HomeErrorMapper
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.usecase.DeleteArtworkByIdUseCase
 import com.dreamsoftware.chicfit.domain.usecase.GetAllArtworksByUserUseCase
 import com.dreamsoftware.chicfit.domain.usecase.SearchArtworkUseCase
@@ -27,12 +27,12 @@ class HomeViewModel @Inject constructor(
 
     override fun onGetDefaultState(): HomeUiState = HomeUiState()
 
-    override fun onArtworkClicked(artworkBO: ArtworkBO) {
-        launchSideEffect(HomeSideEffects.OpenArtworkChat(artworkBO.uid))
+    override fun onArtworkClicked(outfitBO: OutfitBO) {
+        launchSideEffect(HomeSideEffects.OpenArtworkChat(outfitBO.uid))
     }
 
-    override fun onArtworkDetailClicked(artworkBO: ArtworkBO) {
-        launchSideEffect(HomeSideEffects.OpenArtworkDetail(artworkBO.uid))
+    override fun onArtworkDetailClicked(outfitBO: OutfitBO) {
+        launchSideEffect(HomeSideEffects.OpenArtworkDetail(outfitBO.uid))
     }
 
     override fun onSearchQueryUpdated(newSearchQuery: String) {
@@ -40,8 +40,8 @@ class HomeViewModel @Inject constructor(
         onLoadData()
     }
 
-    override fun onArtworkDeleted(artworkBO: ArtworkBO) {
-        updateState { it.copy(confirmDeleteArtwork = artworkBO) }
+    override fun onArtworkDeleted(outfitBO: OutfitBO) {
+        updateState { it.copy(confirmDeleteArtwork = outfitBO) }
     }
 
     override fun onDeleteArtworkConfirmed() {
@@ -70,11 +70,11 @@ class HomeViewModel @Inject constructor(
         updateState { it.copy(infoMessage = null) }
     }
 
-    private fun onDeleteArtworkCompleted(artwork: ArtworkBO) {
+    private fun onDeleteArtworkCompleted(artwork: OutfitBO) {
         updateState { it.copy(artworkList = it.artworkList.filter { iq -> iq.uid != artwork.uid }) }
     }
 
-    private fun onLoadArtworkCompleted(data: List<ArtworkBO>) {
+    private fun onLoadArtworkCompleted(data: List<OutfitBO>) {
         updateState {
             it.copy(artworkList = data)
         }
@@ -109,9 +109,9 @@ class HomeViewModel @Inject constructor(
 data class HomeUiState(
     override val isLoading: Boolean = false,
     override val errorMessage: String? = null,
-    val confirmDeleteArtwork: ArtworkBO? = null,
+    val confirmDeleteArtwork: OutfitBO? = null,
     val infoMessage: String? = null,
-    val artworkList: List<ArtworkBO> = emptyList(),
+    val artworkList: List<OutfitBO> = emptyList(),
     val searchQuery: String = String.EMPTY
 ): UiState<HomeUiState>(isLoading, errorMessage) {
     override fun copyState(isLoading: Boolean, errorMessage: String?): HomeUiState =

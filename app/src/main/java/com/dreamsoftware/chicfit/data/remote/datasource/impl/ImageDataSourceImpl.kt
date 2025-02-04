@@ -17,7 +17,7 @@ internal class ImageDataSourceImpl(
 ) : SupportDataSourceImpl(dispatcher), IImageDataSource {
 
     private companion object {
-        const val STORAGE_BUCKET_NAME = "user_artify"
+        const val STORAGE_BUCKET_NAME = "chicfit_images"
     }
 
     private val storageRef by lazy {

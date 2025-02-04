@@ -4,30 +4,30 @@ import com.dreamsoftware.brownie.utils.IBrownieOneSideMapper
 import com.dreamsoftware.chicfit.data.local.preferences.datasource.IPreferencesDataSource
 import com.dreamsoftware.chicfit.data.remote.datasource.IAuthRemoteDataSource
 import com.dreamsoftware.chicfit.data.remote.datasource.IImageDataSource
-import com.dreamsoftware.chicfit.data.remote.datasource.IArtworkDataSource
+import com.dreamsoftware.chicfit.data.remote.datasource.IOutfitDataSource
 import com.dreamsoftware.chicfit.data.remote.datasource.IMultiModalLanguageModelDataSource
-import com.dreamsoftware.chicfit.data.remote.dto.AddArtworkMessageDTO
+import com.dreamsoftware.chicfit.data.remote.dto.AddMessageDTO
 import com.dreamsoftware.chicfit.data.remote.dto.AuthUserDTO
-import com.dreamsoftware.chicfit.data.remote.dto.ArtworkDTO
+import com.dreamsoftware.chicfit.data.remote.dto.OutfitDTO
 import com.dreamsoftware.chicfit.data.remote.dto.ResolveQuestionDTO
-import com.dreamsoftware.chicfit.data.remote.dto.CreateArtworkDTO
+import com.dreamsoftware.chicfit.data.remote.dto.CreateOutfitDTO
 import com.dreamsoftware.chicfit.data.repository.impl.IMultiModalLanguageModelRepositoryImpl
 import com.dreamsoftware.chicfit.data.repository.impl.ImageRepositoryImpl
-import com.dreamsoftware.chicfit.data.repository.impl.ArtworkRepositoryImpl
+import com.dreamsoftware.chicfit.data.repository.impl.OutfitRepositoryImpl
 import com.dreamsoftware.chicfit.data.repository.impl.PreferenceRepositoryImpl
 import com.dreamsoftware.chicfit.data.repository.impl.UserRepositoryImpl
-import com.dreamsoftware.chicfit.data.repository.mapper.AddArtworkMessageMapper
+import com.dreamsoftware.chicfit.data.repository.mapper.AddOutfitMessageMapper
 import com.dreamsoftware.chicfit.data.repository.mapper.AuthUserMapper
-import com.dreamsoftware.chicfit.data.repository.mapper.ArtworkMapper
+import com.dreamsoftware.chicfit.data.repository.mapper.OutfitMapper
 import com.dreamsoftware.chicfit.data.repository.mapper.ResolveQuestionMapper
-import com.dreamsoftware.chicfit.data.repository.mapper.CreateArtworkMapper
-import com.dreamsoftware.chicfit.domain.model.AddArtworkMessageBO
+import com.dreamsoftware.chicfit.data.repository.mapper.CreateOutfitMapper
+import com.dreamsoftware.chicfit.domain.model.AddMessageBO
 import com.dreamsoftware.chicfit.domain.model.AuthUserBO
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.model.ResolveQuestionBO
-import com.dreamsoftware.chicfit.domain.model.CreateArtworkBO
+import com.dreamsoftware.chicfit.domain.model.CreateOutfitBO
 import com.dreamsoftware.chicfit.domain.repository.IImageRepository
-import com.dreamsoftware.chicfit.domain.repository.IArtworkRepository
+import com.dreamsoftware.chicfit.domain.repository.IOutfitRepository
 import com.dreamsoftware.chicfit.domain.repository.IMultiModalLanguageModelRepository
 import com.dreamsoftware.chicfit.domain.repository.IPreferenceRepository
 import com.dreamsoftware.chicfit.domain.repository.IUserRepository
@@ -48,11 +48,11 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideArtworkMapper(): IBrownieOneSideMapper<ArtworkDTO, ArtworkBO> = ArtworkMapper()
+    fun provideOutfitMapper(): IBrownieOneSideMapper<OutfitDTO, OutfitBO> = OutfitMapper()
 
     @Provides
     @Singleton
-    fun provideSaveArtworkMapper(): IBrownieOneSideMapper<CreateArtworkBO, CreateArtworkDTO> = CreateArtworkMapper()
+    fun provideSaveOutfitMapper(): IBrownieOneSideMapper<CreateOutfitBO, CreateOutfitDTO> = CreateOutfitMapper()
 
     @Provides
     @Singleton
@@ -60,7 +60,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideAddArtworkMessageMapper(): IBrownieOneSideMapper<AddArtworkMessageBO, AddArtworkMessageDTO> = AddArtworkMessageMapper()
+    fun provideAddOutfitMessageMapper(): IBrownieOneSideMapper<AddMessageBO, AddMessageDTO> = AddOutfitMessageMapper()
 
     @Provides
     @Singleton
@@ -88,18 +88,18 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideArtworkRepository(
-        artworkDataSource: IArtworkDataSource,
-        saveArtworkMapper: IBrownieOneSideMapper<CreateArtworkBO, CreateArtworkDTO>,
-        addArtworkMapper: IBrownieOneSideMapper<AddArtworkMessageBO, AddArtworkMessageDTO>,
-        artworkMapper: IBrownieOneSideMapper<ArtworkDTO, ArtworkBO>,
+    fun provideOutfitRepository(
+        outfitDataSource: IOutfitDataSource,
+        saveOutfitMapper: IBrownieOneSideMapper<CreateOutfitBO, CreateOutfitDTO>,
+        addOutfitMapper: IBrownieOneSideMapper<AddMessageBO, AddMessageDTO>,
+        outfitMapper: IBrownieOneSideMapper<OutfitDTO, OutfitBO>,
         @IoDispatcher dispatcher: CoroutineDispatcher
-    ): IArtworkRepository =
-        ArtworkRepositoryImpl(
-            artworkDataSource,
-            saveArtworkMapper,
-            addArtworkMapper,
-            artworkMapper,
+    ): IOutfitRepository =
+        OutfitRepositoryImpl(
+            outfitDataSource,
+            saveOutfitMapper,
+            addOutfitMapper,
+            outfitMapper,
             dispatcher
         )
 

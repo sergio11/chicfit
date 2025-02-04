@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.R
-import com.dreamsoftware.chicfit.ui.theme.ArtifyTheme
+import com.dreamsoftware.chicfit.ui.theme.ChicfitTheme
 import com.dreamsoftware.chicfit.ui.theme.RoundedStarShape
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -95,7 +95,7 @@ fun AnimatedMicButton(
 @PreviewDynamicColors
 @Composable
 private fun AnimatedMicButtonPreview() {
-    ArtifyTheme {
+    ChicfitTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
