@@ -5,7 +5,7 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.dreamsoftware.chicfit.ui.screens.chat.ChatScreenArgs
-import com.dreamsoftware.chicfit.ui.screens.detail.ArtworkDetailScreenArgs
+import com.dreamsoftware.chicfit.ui.screens.detail.OutfitDetailScreenArgs
 
 sealed class Screens(val route: String, arguments: List<NamedNavArgument> = emptyList()) {
 
@@ -27,38 +27,38 @@ sealed class Screens(val route: String, arguments: List<NamedNavArgument> = empt
                 val startDestination = Info.route
             }
             data object Info : Screens("info")
-            data object CreateArtwork : Screens("CreateArtwork")
+            data object CreateOutfit : Screens("CreateOutfit")
             data object Settings: Screens("settings")
-            data object Detail : Screens("detail/{artwork_id}", arguments = listOf(
-                navArgument("artwork_id") {
+            data object Detail : Screens("detail/{outfit_id}", arguments = listOf(
+                navArgument("outfit_id") {
                     type = NavType.StringType
                 }
             )) {
-                fun buildRoute(artworkId: String): String =
+                fun buildRoute(outfitId: String): String =
                     route.replace(
-                        oldValue = "{artwork_id}",
-                        newValue = artworkId
+                        oldValue = "{outfit_id}",
+                        newValue = outfitId
                     )
 
-                fun parseArgs(args: Bundle): ArtworkDetailScreenArgs? = with(args) {
-                    getString("artwork_id")?.let {
-                        ArtworkDetailScreenArgs(id = it)
+                fun parseArgs(args: Bundle): OutfitDetailScreenArgs? = with(args) {
+                    getString("outfit_id")?.let {
+                        OutfitDetailScreenArgs(id = it)
                     }
                 }
             }
-            data object Chat : Screens("chat/{artwork_id}", arguments = listOf(
-                navArgument("artwork_id") {
+            data object Chat : Screens("chat/{outfit_id}", arguments = listOf(
+                navArgument("outfit_id") {
                     type = NavType.StringType
                 }
             )) {
-                fun buildRoute(artworkId: String): String =
+                fun buildRoute(outfitId: String): String =
                     route.replace(
-                        oldValue = "{artwork_id}",
-                        newValue = artworkId
+                        oldValue = "{outfit_id}",
+                        newValue = outfitId
                     )
 
                 fun parseArgs(args: Bundle): ChatScreenArgs? = with(args) {
-                    getString("artwork_id")?.let {
+                    getString("outfit_id")?.let {
                         ChatScreenArgs(id = it)
                     }
                 }

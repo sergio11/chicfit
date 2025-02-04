@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(): BrownieViewModel<MainUiState, MainSid
             titleRes = R.string.home
         ),
         BottomNavBarItem(
-            route = Screens.Main.Home.CreateArtwork.route,
+            route = Screens.Main.Home.CreateOutfit.route,
             icon = R.drawable.ic_main_icon,
             titleRes = R.string.create_outfit
         ),

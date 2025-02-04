@@ -20,9 +20,9 @@ import kotlinx.coroutines.tasks.await
 
 internal class OutfitDataSourceImpl(
     private val firestore: FirebaseFirestore,
-    private val saveArtworkMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>>,
-    private val addArtworkMessageMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>>,
-    private val artworkMapper: IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO>,
+    private val saveOutfitMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>>,
+    private val addOutfitMessageMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>>,
+    private val outfitMapper: IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO>,
     dispatcher: CoroutineDispatcher
 ): SupportDataSourceImpl(dispatcher), IOutfitDataSource {
 
@@ -50,7 +50,7 @@ internal class OutfitDataSourceImpl(
                 .get()
                 .await()
             snapshot.documents.map { document ->
-                artworkMapper.mapInToOut(
+                outfitMapper.mapInToOut(
                     document.data ?: throw IllegalStateException("Document data is null")
                 )
             }
@@ -67,7 +67,7 @@ internal class OutfitDataSourceImpl(
                 .document(data.userId)
                 .collection(SUB_COLLECTION_NAME)
                 .document(data.uid)
-                .set(saveArtworkMapper.mapInToOut(data))
+                .set(saveOutfitMapper.mapInToOut(data))
                 .await()
         },
         onErrorOccurred = { ex ->
@@ -78,7 +78,7 @@ internal class OutfitDataSourceImpl(
     @Throws(AddOutfitMessageRemoteDataException::class)
     override suspend fun addMessage(data: AddMessageDTO): Unit = safeExecution(
         onExecuted = {
-            val messages = addArtworkMessageMapper.mapInToOut(data)
+            val messages = addOutfitMessageMapper.mapInToOut(data)
             val documentRef = collection
                 .document(data.userId)
                 .collection(SUB_COLLECTION_NAME)
@@ -102,7 +102,7 @@ internal class OutfitDataSourceImpl(
                     .document(id)
                     .get()
                     .await()
-                artworkMapper.mapInToOut(
+                outfitMapper.mapInToOut(
                     document.data ?: throw IllegalStateException("Document data is null")
                 )
             },
@@ -124,7 +124,7 @@ internal class OutfitDataSourceImpl(
                 .get()
                 .await()
             snapshot.documents.map { document ->
-                artworkMapper.mapInToOut(
+                outfitMapper.mapInToOut(
                     document.data ?: throw IllegalStateException("Document data is null")
                 )
             }

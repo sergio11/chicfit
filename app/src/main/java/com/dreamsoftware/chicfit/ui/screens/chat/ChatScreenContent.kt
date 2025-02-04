@@ -52,7 +52,7 @@ import com.dreamsoftware.chicfit.ui.components.AnimatedMicButtonWithTranscript
 import com.dreamsoftware.chicfit.ui.components.ChatMessageCard
 import com.dreamsoftware.chicfit.ui.components.LoadingDialog
 import com.dreamsoftware.chicfit.ui.components.Role
-import com.dreamsoftware.chicfit.ui.theme.ChicfitTheme
+import com.dreamsoftware.chicfit.ui.theme.ChicFitTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -285,7 +285,7 @@ private class ChatScreenHaptics(
 @PreviewDynamicColors
 @Composable
 private fun ChatScreenPreview() {
-    ChicfitTheme {
+    ChicFitTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

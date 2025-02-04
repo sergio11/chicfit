@@ -8,7 +8,7 @@ import com.dreamsoftware.brownie.component.BrownieAsyncImage
 import com.dreamsoftware.chicfit.R
 
 @Composable
-fun CommonArtworkImage(
+fun CommonOutfitImage(
     modifier: Modifier,
     imageUrl: String
 ) {

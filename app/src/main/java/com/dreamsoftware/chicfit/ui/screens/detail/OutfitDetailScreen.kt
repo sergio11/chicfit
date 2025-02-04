@@ -8,14 +8,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dreamsoftware.brownie.component.screen.BrownieScreen
 
-data class ArtworkDetailScreenArgs(
+data class OutfitDetailScreenArgs(
     val id: String
 )
 
 @Composable
-fun ArtworkDetailScreen(
-    viewModel: ArtworkDetailViewModel = hiltViewModel(),
-    args: ArtworkDetailScreenArgs,
+fun OutfitDetailScreen(
+    viewModel: OutfitDetailViewModel = hiltViewModel(),
+    args: OutfitDetailScreenArgs,
     onGoToChat: (String) -> Unit,
     onBackPressed: () -> Unit
 ) {
@@ -25,17 +25,17 @@ fun ArtworkDetailScreen(
     BrownieScreen(
         viewModel = viewModel,
         onBackPressed = onBackPressed,
-        onInitialUiState = { ArtworkDetailUiState() },
+        onInitialUiState = { OutfitDetailUiState() },
         onSideEffect = {
             when(it) {
-                ArtworkDetailSideEffects.CloseDetail -> onBackPressed()
-                ArtworkDetailSideEffects.ArtworkDeleted -> onBackPressed()
-                ArtworkDetailSideEffects.OpenArtworkChat -> onGoToChat(args.id)
+                OutfitDetailSideEffects.CloseDetail -> onBackPressed()
+                OutfitDetailSideEffects.OutfitDeleted -> onBackPressed()
+                OutfitDetailSideEffects.OpenOutfitChat -> onGoToChat(args.id)
             }
         },
         onInit = { load(id = args.id) }
     ) { uiState ->
-        ArtworkDetailScreenContent(
+        OutfitDetailScreenContent(
             context = context,
             density = density,
             scrollState = scrollState,

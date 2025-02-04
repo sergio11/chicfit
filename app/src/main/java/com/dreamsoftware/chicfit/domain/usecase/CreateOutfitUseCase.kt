@@ -20,12 +20,12 @@ import java.util.UUID
  * @param outfitRepository Repository for outfit records.
  * @param multiModalLanguageModelRepository Repository for multi-modal language model interactions.
  */
-class CreateArtworkUseCase(
+class CreateOutfitUseCase(
     private val userRepository: IUserRepository,
     private val imageRepository: IImageRepository,
     private val outfitRepository: IOutfitRepository,
     private val multiModalLanguageModelRepository: IMultiModalLanguageModelRepository
-) : BrownieUseCaseWithParams<CreateArtworkUseCase.Params, OutfitBO>() {
+) : BrownieUseCaseWithParams<CreateOutfitUseCase.Params, OutfitBO>() {
 
     /**
      * Executes the use case to create a new outfit record.

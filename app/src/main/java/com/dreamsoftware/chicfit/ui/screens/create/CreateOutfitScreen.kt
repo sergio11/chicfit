@@ -9,8 +9,8 @@ import com.dreamsoftware.brownie.component.screen.BrownieScreen
 import com.dreamsoftware.chicfit.utils.takePicture
 
 @Composable
-fun CreateArtworkScreen(
-    viewModel: CreateArtworkViewModel = hiltViewModel(),
+fun CreateOutfitScreen(
+    viewModel: CreateOutfitViewModel = hiltViewModel(),
     onGoToChat: (String) -> Unit,
     onBackPressed: () -> Unit
 ) {
@@ -19,10 +19,10 @@ fun CreateArtworkScreen(
     BrownieScreen(
         viewModel = viewModel,
         onBackPressed = onBackPressed,
-        onInitialUiState = { CreateArtworkUiState() },
+        onInitialUiState = { CreateOutfitUiState() },
         onSideEffect = {
             when(it) {
-                CreateArtworkSideEffects.StartListening -> {
+                CreateOutfitSideEffects.StartListening -> {
                     cameraController.takePicture(
                         context = context,
                         onSuccess = {
@@ -33,11 +33,11 @@ fun CreateArtworkScreen(
                         }
                     )
                 }
-                is CreateArtworkSideEffects.ArtworkCreated -> onGoToChat(it.id)
+                is CreateOutfitSideEffects.OutfitCreated -> onGoToChat(it.id)
             }
         }
     ) { uiState ->
-        CreateArtworkScreenContent(
+        CreateOutfitScreenContent(
             uiState = uiState,
             actionListener = viewModel,
             lifecycleCameraController = cameraController

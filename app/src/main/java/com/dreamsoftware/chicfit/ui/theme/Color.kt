@@ -22,7 +22,7 @@ val md_theme_light_onTertiaryContainer = Color(0xFF004D40) // Dark emerald green
 
 // Error Colors
 val md_theme_light_error = Color(0xFFF44336) // Soft Red for errors
-val md_theme_light_errorContainer = Color(0xFFFFCDD2) // Light red container for errors
+val md_theme_light_errorContainer = Color(0xFFF44336) // Light red container for errors
 val md_theme_light_onError = Color(0xFFFFFFFF) // White for error text
 val md_theme_light_onErrorContainer = Color(0xFFD32F2F) // Dark red for error text
 

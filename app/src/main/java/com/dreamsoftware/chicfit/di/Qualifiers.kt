@@ -48,8 +48,8 @@ annotation class ChatErrorMapper
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class ArtworkDetailErrorMapper
+annotation class OutfitDetailErrorMapper
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class CreateArtworkErrorMapper
+annotation class CreateOutfitErrorMapper

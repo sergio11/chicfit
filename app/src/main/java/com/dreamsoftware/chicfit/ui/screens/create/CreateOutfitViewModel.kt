@@ -6,9 +6,9 @@ import com.dreamsoftware.brownie.core.IBrownieErrorMapper
 import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
-import com.dreamsoftware.chicfit.di.CreateArtworkErrorMapper
+import com.dreamsoftware.chicfit.di.CreateOutfitErrorMapper
 import com.dreamsoftware.chicfit.domain.model.OutfitBO
-import com.dreamsoftware.chicfit.domain.usecase.CreateArtworkUseCase
+import com.dreamsoftware.chicfit.domain.usecase.CreateOutfitUseCase
 import com.dreamsoftware.chicfit.domain.usecase.TranscribeUserQuestionUseCase
 import com.dreamsoftware.chicfit.domain.usecase.EndUserSpeechCaptureUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,18 +17,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateArtworkViewModel @Inject constructor(
+class CreateOutfitViewModel @Inject constructor(
     private val transcribeUserQuestionUseCase: TranscribeUserQuestionUseCase,
     private val endUserSpeechCaptureUseCase: EndUserSpeechCaptureUseCase,
-    private val createArtworkUseCase: CreateArtworkUseCase,
-    @CreateArtworkErrorMapper private val errorMapper: IBrownieErrorMapper
-) : BrownieViewModel<CreateArtworkUiState, CreateArtworkSideEffects>(), CreateArtworkScreenActionListener {
+    private val createOutfitUseCase: CreateOutfitUseCase,
+    @CreateOutfitErrorMapper private val errorMapper: IBrownieErrorMapper
+) : BrownieViewModel<CreateOutfitUiState, CreateOutfitSideEffects>(), CreateOutfitScreenActionListener {
 
     companion object {
         private const val SHOW_CONFIRM_SCREEN_DELAY = 2000L
     }
 
-    override fun onGetDefaultState(): CreateArtworkUiState = CreateArtworkUiState()
+    override fun onGetDefaultState(): CreateOutfitUiState = CreateOutfitUiState()
 
     fun onTranscribeUserQuestion(imageUrl: String) {
         updateState { it.copy(isListening = true, question = String.EMPTY, imageUrl = imageUrl) }
@@ -48,7 +48,7 @@ class CreateArtworkViewModel @Inject constructor(
         if(uiState.value.isListening) {
             onStopTranscription()
         } else {
-            launchSideEffect(CreateArtworkSideEffects.StartListening)
+            launchSideEffect(CreateOutfitSideEffects.StartListening)
         }
     }
 
@@ -59,9 +59,9 @@ class CreateArtworkViewModel @Inject constructor(
     override fun onCreate() {
         with(uiState.value) {
             executeUseCaseWithParams(
-                useCase = createArtworkUseCase,
-                params = CreateArtworkUseCase.Params(imageUrl = imageUrl, question = question),
-                onSuccess = ::onArtworkCreatedSuccessfully,
+                useCase = createOutfitUseCase,
+                params = CreateOutfitUseCase.Params(imageUrl = imageUrl, question = question),
+                onSuccess = ::onOutfitCreatedSuccessfully,
                 onMapExceptionToState = ::onMapExceptionToState
             )
         }
@@ -99,12 +99,12 @@ class CreateArtworkViewModel @Inject constructor(
         }
     }
 
-    private fun onArtworkCreatedSuccessfully(data: OutfitBO) {
+    private fun onOutfitCreatedSuccessfully(data: OutfitBO) {
         onResetState()
-        launchSideEffect(CreateArtworkSideEffects.ArtworkCreated(data.uid))
+        launchSideEffect(CreateOutfitSideEffects.OutfitCreated(data.uid))
     }
 
-    private fun onMapExceptionToState(ex: Exception, uiState: CreateArtworkUiState) =
+    private fun onMapExceptionToState(ex: Exception, uiState: CreateOutfitUiState) =
         uiState.copy(
             isLoading = false,
             isListening = false,
@@ -112,7 +112,7 @@ class CreateArtworkViewModel @Inject constructor(
         )
 }
 
-data class CreateArtworkUiState(
+data class CreateOutfitUiState(
     override val isLoading: Boolean = false,
     override val errorMessage: String? = null,
     val showConfirm: Boolean = false,
@@ -120,12 +120,12 @@ data class CreateArtworkUiState(
     val isListening: Boolean = false,
     val imageUrl: String = String.EMPTY,
     val question: String = String.EMPTY
-) : UiState<CreateArtworkUiState>(isLoading, errorMessage) {
-    override fun copyState(isLoading: Boolean, errorMessage: String?): CreateArtworkUiState =
+) : UiState<CreateOutfitUiState>(isLoading, errorMessage) {
+    override fun copyState(isLoading: Boolean, errorMessage: String?): CreateOutfitUiState =
         copy(isLoading = isLoading, errorMessage = errorMessage)
 }
 
-sealed interface CreateArtworkSideEffects : SideEffect {
-    data object StartListening: CreateArtworkSideEffects
-    data class ArtworkCreated(val id: String): CreateArtworkSideEffects
+sealed interface CreateOutfitSideEffects : SideEffect {
+    data object StartListening: CreateOutfitSideEffects
+    data class OutfitCreated(val id: String): CreateOutfitSideEffects
 }

@@ -7,17 +7,17 @@ import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.di.HomeErrorMapper
 import com.dreamsoftware.chicfit.domain.model.OutfitBO
-import com.dreamsoftware.chicfit.domain.usecase.DeleteArtworkByIdUseCase
-import com.dreamsoftware.chicfit.domain.usecase.GetAllArtworksByUserUseCase
-import com.dreamsoftware.chicfit.domain.usecase.SearchArtworkUseCase
+import com.dreamsoftware.chicfit.domain.usecase.DeleteOutfitByIdUseCase
+import com.dreamsoftware.chicfit.domain.usecase.GetAllOutfitsByUserUseCase
+import com.dreamsoftware.chicfit.domain.usecase.SearchOutfitUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getAllArtworksByUserUseCase: GetAllArtworksByUserUseCase,
-    private val deleteArtworkByIdUseCase: DeleteArtworkByIdUseCase,
-    private val searchArtworkUseCase: SearchArtworkUseCase,
+    private val getAllOutfitsByUserUseCase: GetAllOutfitsByUserUseCase,
+    private val deleteOutfitByIdUseCase: DeleteOutfitByIdUseCase,
+    private val searchOutfitUseCase: SearchOutfitUseCase,
     @HomeErrorMapper private val errorMapper: IBrownieErrorMapper
 ) : BrownieViewModel<HomeUiState, HomeSideEffects>(), HomeScreenActionListener {
 
@@ -27,12 +27,12 @@ class HomeViewModel @Inject constructor(
 
     override fun onGetDefaultState(): HomeUiState = HomeUiState()
 
-    override fun onArtworkClicked(outfitBO: OutfitBO) {
-        launchSideEffect(HomeSideEffects.OpenArtworkChat(outfitBO.uid))
+    override fun onOutfitClicked(outfitBO: OutfitBO) {
+        launchSideEffect(HomeSideEffects.OpenOutfitChat(outfitBO.uid))
     }
 
-    override fun onArtworkDetailClicked(outfitBO: OutfitBO) {
-        launchSideEffect(HomeSideEffects.OpenArtworkDetail(outfitBO.uid))
+    override fun onOutfitDetailClicked(outfitBO: OutfitBO) {
+        launchSideEffect(HomeSideEffects.OpenOutfitDetail(outfitBO.uid))
     }
 
     override fun onSearchQueryUpdated(newSearchQuery: String) {
@@ -40,43 +40,43 @@ class HomeViewModel @Inject constructor(
         onLoadData()
     }
 
-    override fun onArtworkDeleted(outfitBO: OutfitBO) {
-        updateState { it.copy(confirmDeleteArtwork = outfitBO) }
+    override fun onOutfitDeleted(outfitBO: OutfitBO) {
+        updateState { it.copy(confirmDeleteOutfit = outfitBO) }
     }
 
-    override fun onDeleteArtworkConfirmed() {
+    override fun onDeleteOutfitConfirmed() {
         doOnUiState {
-            confirmDeleteArtwork?.let { artwork ->
+            confirmDeleteOutfit?.let { outfit ->
                 executeUseCaseWithParams(
-                    useCase = deleteArtworkByIdUseCase,
-                    params = DeleteArtworkByIdUseCase.Params(
-                        id = artwork.uid
+                    useCase = deleteOutfitByIdUseCase,
+                    params = DeleteOutfitByIdUseCase.Params(
+                        id = outfit.uid
                     ),
                     onSuccess = {
-                        onDeleteArtworkCompleted(artwork)
+                        onDeleteOutfitCompleted(outfit)
                     },
                     onMapExceptionToState = ::onMapExceptionToState
                 )
             }
-            updateState { it.copy(confirmDeleteArtwork = null) }
+            updateState { it.copy(confirmDeleteOutfit = null) }
         }
     }
 
-    override fun onDeleteArtworkCancelled() {
-        updateState { it.copy(confirmDeleteArtwork = null) }
+    override fun onDeleteOutfitCancelled() {
+        updateState { it.copy(confirmDeleteOutfit = null) }
     }
 
     override fun onInfoMessageCleared() {
         updateState { it.copy(infoMessage = null) }
     }
 
-    private fun onDeleteArtworkCompleted(artwork: OutfitBO) {
-        updateState { it.copy(artworkList = it.artworkList.filter { iq -> iq.uid != artwork.uid }) }
+    private fun onDeleteOutfitCompleted(outfit: OutfitBO) {
+        updateState { it.copy(outfitList = it.outfitList.filter { iq -> iq.uid != outfit.uid }) }
     }
 
-    private fun onLoadArtworkCompleted(data: List<OutfitBO>) {
+    private fun onLoadOutfitCompleted(data: List<OutfitBO>) {
         updateState {
-            it.copy(artworkList = data)
+            it.copy(outfitList = data)
         }
     }
 
@@ -84,15 +84,15 @@ class HomeViewModel @Inject constructor(
         doOnUiState {
             if(searchQuery.isEmpty()) {
                 executeUseCase(
-                    useCase = getAllArtworksByUserUseCase,
-                    onSuccess = ::onLoadArtworkCompleted,
+                    useCase = getAllOutfitsByUserUseCase,
+                    onSuccess = ::onLoadOutfitCompleted,
                     onMapExceptionToState = ::onMapExceptionToState
                 )
             } else {
                 executeUseCaseWithParams(
-                    useCase = searchArtworkUseCase,
-                    params = SearchArtworkUseCase.Params(term = searchQuery),
-                    onSuccess = ::onLoadArtworkCompleted,
+                    useCase = searchOutfitUseCase,
+                    params = SearchOutfitUseCase.Params(term = searchQuery),
+                    onSuccess = ::onLoadOutfitCompleted,
                     onMapExceptionToState = ::onMapExceptionToState
                 )
             }
@@ -109,9 +109,9 @@ class HomeViewModel @Inject constructor(
 data class HomeUiState(
     override val isLoading: Boolean = false,
     override val errorMessage: String? = null,
-    val confirmDeleteArtwork: OutfitBO? = null,
+    val confirmDeleteOutfit: OutfitBO? = null,
     val infoMessage: String? = null,
-    val artworkList: List<OutfitBO> = emptyList(),
+    val outfitList: List<OutfitBO> = emptyList(),
     val searchQuery: String = String.EMPTY
 ): UiState<HomeUiState>(isLoading, errorMessage) {
     override fun copyState(isLoading: Boolean, errorMessage: String?): HomeUiState =
@@ -120,6 +120,6 @@ data class HomeUiState(
 
 
 sealed interface HomeSideEffects: SideEffect {
-    data class OpenArtworkDetail(val id: String): HomeSideEffects
-    data class OpenArtworkChat(val id: String): HomeSideEffects
+    data class OpenOutfitDetail(val id: String): HomeSideEffects
+    data class OpenOutfitChat(val id: String): HomeSideEffects
 }

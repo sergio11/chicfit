@@ -12,7 +12,7 @@ import com.dreamsoftware.chicfit.data.remote.dto.AuthUserDTO
 import com.dreamsoftware.chicfit.data.remote.dto.CreateOutfitDTO
 import com.dreamsoftware.chicfit.data.remote.dto.OutfitDTO
 import com.dreamsoftware.chicfit.data.remote.mapper.AddOutfitMessageRemoteMapper
-import com.dreamsoftware.chicfit.data.remote.mapper.CreateArtworkRemoteMapper
+import com.dreamsoftware.chicfit.data.remote.mapper.CreateOutfitRemoteMapper
 import com.dreamsoftware.chicfit.data.remote.mapper.UserAuthenticatedMapper
 import com.dreamsoftware.chicfit.data.remote.mapper.OutfitRemoteMapper
 import com.google.firebase.Firebase
@@ -48,11 +48,11 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideSaveUserQuestionRemoteMapper(): IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> = CreateArtworkRemoteMapper()
+    fun provideSaveUserQuestionRemoteMapper(): IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> = CreateOutfitRemoteMapper()
 
     @Provides
     @Singleton
-    fun provideAddArtworkMessageRemoteMapper(): IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>> = AddOutfitMessageRemoteMapper()
+    fun provideAddOutfitMessageRemoteMapper(): IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>> = AddOutfitMessageRemoteMapper()
 
     /**
      * Provides a singleton instance of FirebaseAuth.
@@ -106,16 +106,16 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideArtworkDataSource(
+    fun provideOutfitDataSource(
         firestore: FirebaseFirestore,
         saveUserQuestionMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>>,
-        addArtworkMessageMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>>,
+        addOutfitMessageMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>>,
         userQuestionMapper: IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO>,
         @IoDispatcher dispatcher: CoroutineDispatcher
     ): IOutfitDataSource = OutfitDataSourceImpl(
         firestore,
         saveUserQuestionMapper,
-        addArtworkMessageMapper,
+        addOutfitMessageMapper,
         userQuestionMapper,
         dispatcher
     )

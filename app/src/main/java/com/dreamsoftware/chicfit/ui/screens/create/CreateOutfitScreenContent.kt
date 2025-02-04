@@ -31,12 +31,12 @@ import com.dreamsoftware.chicfit.R
 import com.dreamsoftware.chicfit.ui.components.AnimatedMicButtonWithTranscript
 import com.dreamsoftware.chicfit.ui.components.CameraPreview
 import com.dreamsoftware.chicfit.ui.components.LoadingDialog
-import com.dreamsoftware.chicfit.ui.screens.core.CommonArtworkImage
+import com.dreamsoftware.chicfit.ui.screens.core.CommonOutfitImage
 
 @Composable
-internal fun CreateArtworkScreenContent(
-    uiState: CreateArtworkUiState,
-    actionListener: CreateArtworkScreenActionListener,
+internal fun CreateOutfitScreenContent(
+    uiState: CreateOutfitUiState,
+    actionListener: CreateOutfitScreenActionListener,
     lifecycleCameraController: LifecycleCameraController
 ) {
     with(uiState) {
@@ -51,12 +51,12 @@ internal fun CreateArtworkScreenContent(
             onErrorMessageCleared = actionListener::onErrorMessageCleared,
         ) {
             if (showConfirm) {
-                ConfirmArtwork(
+                ConfirmOutfit(
                     uiState = uiState,
                     actionListener = actionListener,
                 )
             } else {
-                CreateArtwork(
+                CreateOutfit(
                     uiState = uiState,
                     actionListener = actionListener,
                     lifecycleCameraController = lifecycleCameraController
@@ -67,9 +67,9 @@ internal fun CreateArtworkScreenContent(
 }
 
 @Composable
-private fun CreateArtwork(
-    uiState: CreateArtworkUiState,
-    actionListener: CreateArtworkScreenActionListener,
+private fun CreateOutfit(
+    uiState: CreateOutfitUiState,
+    actionListener: CreateOutfitScreenActionListener,
     lifecycleCameraController: LifecycleCameraController
 ) {
     with(uiState) {
@@ -107,9 +107,9 @@ private fun CreateArtwork(
 }
 
 @Composable
-private fun ColumnScope.ConfirmArtwork(
-    uiState: CreateArtworkUiState,
-    actionListener: CreateArtworkScreenActionListener
+private fun ColumnScope.ConfirmOutfit(
+    uiState: CreateOutfitUiState,
+    actionListener: CreateOutfitScreenActionListener
 ) {
     with(uiState) {
         Image(
@@ -126,7 +126,7 @@ private fun ColumnScope.ConfirmArtwork(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            CommonArtworkImage(
+            CommonOutfitImage(
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 10.dp)
                     .width(250.dp)
@@ -169,7 +169,7 @@ private fun ColumnScope.ConfirmArtwork(
                 type = BrownieButtonTypeEnum.LARGE,
                 style = BrownieButtonStyleTypeEnum.INVERSE,
                 onClick = actionListener::onCancel,
-                textColor = MaterialTheme.colorScheme.secondary,
+                textColor = MaterialTheme.colorScheme.onSecondary,
                 borderColor = MaterialTheme.colorScheme.secondary,
                 textRes = R.string.create_outfit_cancel_button_text
             )

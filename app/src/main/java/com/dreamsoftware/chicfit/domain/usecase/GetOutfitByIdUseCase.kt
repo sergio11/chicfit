@@ -5,14 +5,14 @@ import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.repository.IOutfitRepository
 import com.dreamsoftware.chicfit.domain.repository.IUserRepository
 
-class GetArtworkByIdUseCase(
+class GetOutfitByIdUseCase(
     private val userRepository: IUserRepository,
-    private val artworkRepository: IOutfitRepository
-) : BrownieUseCaseWithParams<GetArtworkByIdUseCase.Params, OutfitBO>() {
+    private val outfitRepository: IOutfitRepository
+) : BrownieUseCaseWithParams<GetOutfitByIdUseCase.Params, OutfitBO>() {
 
     override suspend fun onExecuted(params: Params): OutfitBO {
         val userId = userRepository.getUserAuthenticatedUid()
-        return artworkRepository.fetchById(userId = userId, id = params.id)
+        return outfitRepository.fetchById(userId = userId, id = params.id)
     }
 
     data class Params(val id: String)

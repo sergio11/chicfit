@@ -22,17 +22,17 @@ import com.dreamsoftware.chicfit.R
 import com.dreamsoftware.chicfit.ui.components.LoadingDialog
 
 @Composable
-internal fun ArtworkDetailScreenContent(
+internal fun OutfitDetailScreenContent(
     context: Context,
     density: Density,
     scrollState: ScrollState,
-    uiState: ArtworkDetailUiState,
-    actionListener: ArtworkDetailScreenActionListener
+    uiState: OutfitDetailUiState,
+    actionListener: OutfitDetailScreenActionListener
 ) {
     with(uiState) {
         LoadingDialog(isShowingDialog = isLoading)
         BrownieDialog(
-            isVisible = showDeleteArtworkDialog,
+            isVisible = showDeleteDialog,
             mainLogoRes = R.drawable.main_logo,
             titleRes = R.string.delete_outfit_dialog_title,
             descriptionRes = R.string.delete_outfit_dialog_description,
@@ -94,7 +94,7 @@ internal fun ArtworkDetailScreenContent(
                 textColor = MaterialTheme.colorScheme.secondary,
                 borderColor = MaterialTheme.colorScheme.secondary,
                 style = BrownieButtonStyleTypeEnum.TRANSPARENT,
-                onClick = actionListener::onArtworkDeleted,
+                onClick = actionListener::onOutfitDeleted,
                 textRes = R.string.outfit_detail_delete_button_text
             )
         }
