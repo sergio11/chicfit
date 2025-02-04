@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.dreamsoftware.brownie.utils.network.BrownieNetworkConnectivityMonitor
 import com.dreamsoftware.chicfit.ui.screens.app.AppScreen
-import com.dreamsoftware.chicfit.ui.theme.ArtifyTheme
+import com.dreamsoftware.chicfit.ui.theme.ChicfitTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         networkConnectivityMonitor.registerNetworkCallback()
         setContent {
-            ArtifyTheme {
+            ChicfitTheme {
                 AppScreen()
             }
         }

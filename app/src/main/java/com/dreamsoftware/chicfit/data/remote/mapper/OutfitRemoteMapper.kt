@@ -1,11 +1,11 @@
 package com.dreamsoftware.chicfit.data.remote.mapper
 
 import com.dreamsoftware.brownie.utils.IBrownieOneSideMapper
-import com.dreamsoftware.chicfit.data.remote.dto.ArtworkDTO
-import com.dreamsoftware.chicfit.data.remote.dto.ArtworkMessageDTO
+import com.dreamsoftware.chicfit.data.remote.dto.OutfitDTO
+import com.dreamsoftware.chicfit.data.remote.dto.OutfitMessageDTO
 import com.google.firebase.Timestamp
 
-internal class ArtworkRemoteMapper: IBrownieOneSideMapper<Map<String, Any?>, ArtworkDTO> {
+internal class OutfitRemoteMapper: IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO> {
 
     private companion object {
         const val UID_KEY = "uid"
@@ -19,15 +19,15 @@ internal class ArtworkRemoteMapper: IBrownieOneSideMapper<Map<String, Any?>, Art
         const val TEXT_KEY = "text"
     }
 
-    override fun mapInToOut(input: Map<String, Any?>): ArtworkDTO = with(input) {
-        ArtworkDTO(
+    override fun mapInToOut(input: Map<String, Any?>): OutfitDTO = with(input) {
+        OutfitDTO(
             uid = get(UID_KEY) as String,
             userId = get(USER_ID_KEY) as String,
             imageUrl = get(IMAGE_URL_KEY) as String,
             imageDescription = get(IMAGE_DESCRIPTION_KEY) as String,
             createAt = get(CREATED_AT_KEY) as Timestamp,
             messages = (get(MESSAGES_KEY) as? List<Map<String, String>>)?.map {
-                ArtworkMessageDTO(
+                OutfitMessageDTO(
                     uid = it[MESSAGE_ID_KEY].orEmpty(),
                     role = it[ROLE_KEY].orEmpty(),
                     text = it[TEXT_KEY].orEmpty()
@@ -36,6 +36,6 @@ internal class ArtworkRemoteMapper: IBrownieOneSideMapper<Map<String, Any?>, Art
         )
     }
 
-    override fun mapInListToOutList(input: Iterable<Map<String, Any?>>): Iterable<ArtworkDTO> =
+    override fun mapInListToOutList(input: Iterable<Map<String, Any?>>): Iterable<OutfitDTO> =
         input.map(::mapInToOut)
 }

@@ -1,10 +1,10 @@
 package com.dreamsoftware.chicfit.data.remote.mapper
 
 import com.dreamsoftware.brownie.utils.IBrownieOneSideMapper
-import com.dreamsoftware.chicfit.data.remote.dto.AddArtworkMessageDTO
+import com.dreamsoftware.chicfit.data.remote.dto.AddMessageDTO
 import java.util.UUID
 
-internal class AddArtworkMessageRemoteMapper: IBrownieOneSideMapper<AddArtworkMessageDTO, List<Map<String, String>>> {
+internal class AddOutfitMessageRemoteMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>> {
 
     private companion object {
         const val MESSAGE_ID_KEY = "uid"
@@ -12,7 +12,7 @@ internal class AddArtworkMessageRemoteMapper: IBrownieOneSideMapper<AddArtworkMe
         const val TEXT_KEY = "text"
     }
 
-    override fun mapInToOut(input: AddArtworkMessageDTO): List<Map<String, String>> = with(input) {
+    override fun mapInToOut(input: AddMessageDTO): List<Map<String, String>> = with(input) {
         listOf(
             hashMapOf(
                 MESSAGE_ID_KEY to UUID.randomUUID().toString(),
@@ -27,6 +27,6 @@ internal class AddArtworkMessageRemoteMapper: IBrownieOneSideMapper<AddArtworkMe
         )
     }
 
-    override fun mapInListToOutList(input: Iterable<AddArtworkMessageDTO>): Iterable<List<Map<String, String>>> =
+    override fun mapInListToOutList(input: Iterable<AddMessageDTO>): Iterable<List<Map<String, String>>> =
         input.map(::mapInToOut)
 }

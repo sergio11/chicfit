@@ -1,6 +1,6 @@
 package com.dreamsoftware.chicfit.domain.model
 
-data class AddArtworkMessageBO(
+data class AddMessageBO(
     val uid: String,
     val userId: String,
     val question: String,

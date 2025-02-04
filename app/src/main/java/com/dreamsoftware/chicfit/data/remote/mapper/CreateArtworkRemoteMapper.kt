@@ -1,12 +1,12 @@
 package com.dreamsoftware.chicfit.data.remote.mapper
 
 import com.dreamsoftware.brownie.utils.IBrownieOneSideMapper
-import com.dreamsoftware.chicfit.data.remote.dto.CreateArtworkDTO
+import com.dreamsoftware.chicfit.data.remote.dto.CreateOutfitDTO
 import com.google.firebase.Timestamp
 import java.util.Date
 import java.util.UUID
 
-internal class CreateArtworkRemoteMapper: IBrownieOneSideMapper<CreateArtworkDTO, Map<String, Any?>> {
+internal class CreateArtworkRemoteMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> {
 
     private companion object {
         const val UID_KEY = "uid"
@@ -20,7 +20,7 @@ internal class CreateArtworkRemoteMapper: IBrownieOneSideMapper<CreateArtworkDTO
         const val TEXT_KEY = "text"
     }
 
-    override fun mapInToOut(input: CreateArtworkDTO): Map<String, Any?> = with(input) {
+    override fun mapInToOut(input: CreateOutfitDTO): Map<String, Any?> = with(input) {
         hashMapOf(
             UID_KEY to uid,
             USER_ID_KEY to userId,
@@ -42,6 +42,6 @@ internal class CreateArtworkRemoteMapper: IBrownieOneSideMapper<CreateArtworkDTO
         )
     }
 
-    override fun mapInListToOutList(input: Iterable<CreateArtworkDTO>): Iterable<Map<String, Any?>> =
+    override fun mapInListToOutList(input: Iterable<CreateOutfitDTO>): Iterable<Map<String, Any?>> =
         input.map(::mapInToOut)
 }

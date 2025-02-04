@@ -1,6 +1,6 @@
 package com.dreamsoftware.chicfit.domain.model
 
-enum class ArtworkMessageRoleEnum {
+enum class OutfitMessageRoleEnum {
     /**
      * Represents a message sent by the user.
      */

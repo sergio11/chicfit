@@ -12,12 +12,12 @@ class SavePictureRemoteDataException(message: String? = null, cause: Throwable? 
 class DeletePictureRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 
 // Artwork Data Source
-class SearchArtworkRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
-class CreateArtworkRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
-class AddArtworkMessageRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
-class FetchArtworkByIdRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
-class FetchAllArtworkRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
-class DeleteArtworkByIdRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class SearchOutfitRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class CreateOutfitRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class AddOutfitMessageRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class FetchOutfitByIdRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class FetchAllOutfitRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
+class DeleteOutfitByIdRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)
 
 // Multimodal LLM Data Source
 class ResolveQuestionFromContextRemoteDataException(message: String? = null, cause: Throwable? = null): RemoteDataException(message, cause)

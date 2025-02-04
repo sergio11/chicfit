@@ -1,4 +1,5 @@
 package com.dreamsoftware.chicfit.domain.validation.impl
+
 import android.util.Patterns
 import com.dreamsoftware.chicfit.domain.model.SignUpBO
 import com.dreamsoftware.chicfit.domain.validation.IBusinessEntityValidator

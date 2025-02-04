@@ -7,7 +7,7 @@ import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.di.CreateArtworkErrorMapper
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.usecase.CreateArtworkUseCase
 import com.dreamsoftware.chicfit.domain.usecase.TranscribeUserQuestionUseCase
 import com.dreamsoftware.chicfit.domain.usecase.EndUserSpeechCaptureUseCase
@@ -99,7 +99,7 @@ class CreateArtworkViewModel @Inject constructor(
         }
     }
 
-    private fun onArtworkCreatedSuccessfully(data: ArtworkBO) {
+    private fun onArtworkCreatedSuccessfully(data: OutfitBO) {
         onResetState()
         launchSideEffect(CreateArtworkSideEffects.ArtworkCreated(data.uid))
     }

@@ -1,10 +1,8 @@
 package com.dreamsoftware.chicfit.data.remote.dto
 
-data class CreateArtworkDTO(
+data class AddMessageDTO(
     val uid: String,
     val userId: String,
-    val imageUrl: String,
-    val imageDescription: String,
     val question: String,
     val questionRole: String,
     val answer: String,

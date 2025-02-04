@@ -6,7 +6,7 @@ import com.dreamsoftware.brownie.core.SideEffect
 import com.dreamsoftware.brownie.core.UiState
 import com.dreamsoftware.brownie.utils.EMPTY
 import com.dreamsoftware.chicfit.di.ArtworkDetailErrorMapper
-import com.dreamsoftware.chicfit.domain.model.ArtworkBO
+import com.dreamsoftware.chicfit.domain.model.OutfitBO
 import com.dreamsoftware.chicfit.domain.usecase.DeleteArtworkByIdUseCase
 import com.dreamsoftware.chicfit.domain.usecase.GetArtworkByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,9 +30,9 @@ class ArtworkDetailViewModel @Inject constructor(
 
     override fun onGetDefaultState(): ArtworkDetailUiState = ArtworkDetailUiState()
 
-    private fun onLoadArtworkDetailCompleted(artworkBO: ArtworkBO) {
+    private fun onLoadArtworkDetailCompleted(outfitBO: OutfitBO) {
         updateState {
-            with(artworkBO) {
+            with(outfitBO) {
                 it.copy(
                     uid = uid,
                     imageUrl = imageUrl,

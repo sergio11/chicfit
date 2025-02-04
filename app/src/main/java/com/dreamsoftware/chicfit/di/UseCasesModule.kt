@@ -3,14 +3,14 @@ package com.dreamsoftware.chicfit.di
 import com.dreamsoftware.chicfit.domain.model.AuthRequestBO
 import com.dreamsoftware.chicfit.domain.model.SignUpBO
 import com.dreamsoftware.chicfit.domain.repository.IImageRepository
-import com.dreamsoftware.chicfit.domain.repository.IArtworkRepository
+import com.dreamsoftware.chicfit.domain.repository.IOutfitRepository
 import com.dreamsoftware.chicfit.domain.repository.IMultiModalLanguageModelRepository
 import com.dreamsoftware.chicfit.domain.repository.IPreferenceRepository
 import com.dreamsoftware.chicfit.domain.repository.IUserRepository
 import com.dreamsoftware.chicfit.domain.service.ISoundPlayerService
 import com.dreamsoftware.chicfit.domain.service.ITTSService
 import com.dreamsoftware.chicfit.domain.service.ITranscriptionService
-import com.dreamsoftware.chicfit.domain.usecase.AddArtworkMessageUseCase
+import com.dreamsoftware.chicfit.domain.usecase.AddOutfitMessageUseCase
 import com.dreamsoftware.chicfit.domain.usecase.CreateArtworkUseCase
 import com.dreamsoftware.chicfit.domain.usecase.DeleteArtworkByIdUseCase
 import com.dreamsoftware.chicfit.domain.usecase.TranscribeUserQuestionUseCase
@@ -101,13 +101,13 @@ class UseCasesModule {
     fun provideCreateArtworkUseCase(
         userRepository: IUserRepository,
         imageRepository: IImageRepository,
-        artworkRepository: IArtworkRepository,
+        artworkRepository: IOutfitRepository,
         multiModalLanguageModelRepository: IMultiModalLanguageModelRepository
     ): CreateArtworkUseCase =
         CreateArtworkUseCase(
             userRepository = userRepository,
             imageRepository = imageRepository,
-            artworkRepository = artworkRepository,
+            outfitRepository = artworkRepository,
             multiModalLanguageModelRepository = multiModalLanguageModelRepository
         )
 
@@ -116,7 +116,7 @@ class UseCasesModule {
     fun provideDeleteArtworkByIdUseCase(
         userRepository: IUserRepository,
         imageRepository: IImageRepository,
-        artworkRepository: IArtworkRepository
+        artworkRepository: IOutfitRepository
     ): DeleteArtworkByIdUseCase =
         DeleteArtworkByIdUseCase(
             userRepository = userRepository,
@@ -128,7 +128,7 @@ class UseCasesModule {
     @ViewModelScoped
     fun provideGetAllArtworkByUserUseCase(
         userRepository: IUserRepository,
-        artworkRepository: IArtworkRepository
+        artworkRepository: IOutfitRepository
     ): GetAllArtworksByUserUseCase =
         GetAllArtworksByUserUseCase(
             userRepository = userRepository,
@@ -148,7 +148,7 @@ class UseCasesModule {
     @ViewModelScoped
     fun provideGetArtworkByIdUseCase(
         userRepository: IUserRepository,
-        artworkRepository: IArtworkRepository
+        artworkRepository: IOutfitRepository
     ): GetArtworkByIdUseCase =
         GetArtworkByIdUseCase(
             userRepository = userRepository,
@@ -168,12 +168,12 @@ class UseCasesModule {
     @ViewModelScoped
     fun provideAddArtworkQuestionUseCase(
         userRepository: IUserRepository,
-        artworkRepository: IArtworkRepository,
+        artworkRepository: IOutfitRepository,
         multiModalLanguageModelRepository: IMultiModalLanguageModelRepository
-    ): AddArtworkMessageUseCase =
-        AddArtworkMessageUseCase(
+    ): AddOutfitMessageUseCase =
+        AddOutfitMessageUseCase(
             userRepository = userRepository,
-            artworkRepository = artworkRepository,
+            outfitRepository = artworkRepository,
             multiModalLanguageModelRepository = multiModalLanguageModelRepository
         )
 
@@ -212,7 +212,7 @@ class UseCasesModule {
     @ViewModelScoped
     fun provideSearchArtworkUseCase(
         userRepository: IUserRepository,
-        artworkRepository: IArtworkRepository,
+        artworkRepository: IOutfitRepository,
     ): SearchArtworkUseCase =
         SearchArtworkUseCase(
             userRepository = userRepository,

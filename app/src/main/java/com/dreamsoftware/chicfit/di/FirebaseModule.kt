@@ -3,18 +3,18 @@ package com.dreamsoftware.chicfit.di
 import com.dreamsoftware.brownie.utils.IBrownieOneSideMapper
 import com.dreamsoftware.chicfit.data.remote.datasource.IAuthRemoteDataSource
 import com.dreamsoftware.chicfit.data.remote.datasource.IImageDataSource
-import com.dreamsoftware.chicfit.data.remote.datasource.IArtworkDataSource
+import com.dreamsoftware.chicfit.data.remote.datasource.IOutfitDataSource
 import com.dreamsoftware.chicfit.data.remote.datasource.impl.AuthRemoteDataSourceImpl
 import com.dreamsoftware.chicfit.data.remote.datasource.impl.ImageDataSourceImpl
-import com.dreamsoftware.chicfit.data.remote.datasource.impl.ArtworkDataSourceImpl
-import com.dreamsoftware.chicfit.data.remote.dto.AddArtworkMessageDTO
+import com.dreamsoftware.chicfit.data.remote.datasource.impl.OutfitDataSourceImpl
+import com.dreamsoftware.chicfit.data.remote.dto.AddMessageDTO
 import com.dreamsoftware.chicfit.data.remote.dto.AuthUserDTO
-import com.dreamsoftware.chicfit.data.remote.dto.CreateArtworkDTO
-import com.dreamsoftware.chicfit.data.remote.dto.ArtworkDTO
-import com.dreamsoftware.chicfit.data.remote.mapper.AddArtworkMessageRemoteMapper
+import com.dreamsoftware.chicfit.data.remote.dto.CreateOutfitDTO
+import com.dreamsoftware.chicfit.data.remote.dto.OutfitDTO
+import com.dreamsoftware.chicfit.data.remote.mapper.AddOutfitMessageRemoteMapper
 import com.dreamsoftware.chicfit.data.remote.mapper.CreateArtworkRemoteMapper
 import com.dreamsoftware.chicfit.data.remote.mapper.UserAuthenticatedMapper
-import com.dreamsoftware.chicfit.data.remote.mapper.ArtworkRemoteMapper
+import com.dreamsoftware.chicfit.data.remote.mapper.OutfitRemoteMapper
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -44,15 +44,15 @@ class FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideUserQuestionRemoteMapper(): IBrownieOneSideMapper<Map<String, Any?>, ArtworkDTO> = ArtworkRemoteMapper()
+    fun provideUserQuestionRemoteMapper(): IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO> = OutfitRemoteMapper()
 
     @Provides
     @Singleton
-    fun provideSaveUserQuestionRemoteMapper(): IBrownieOneSideMapper<CreateArtworkDTO, Map<String, Any?>> = CreateArtworkRemoteMapper()
+    fun provideSaveUserQuestionRemoteMapper(): IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>> = CreateArtworkRemoteMapper()
 
     @Provides
     @Singleton
-    fun provideAddArtworkMessageRemoteMapper(): IBrownieOneSideMapper<AddArtworkMessageDTO, List<Map<String, String>>> = AddArtworkMessageRemoteMapper()
+    fun provideAddArtworkMessageRemoteMapper(): IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>> = AddOutfitMessageRemoteMapper()
 
     /**
      * Provides a singleton instance of FirebaseAuth.
@@ -108,11 +108,11 @@ class FirebaseModule {
     @Singleton
     fun provideArtworkDataSource(
         firestore: FirebaseFirestore,
-        saveUserQuestionMapper: IBrownieOneSideMapper<CreateArtworkDTO, Map<String, Any?>>,
-        addArtworkMessageMapper: IBrownieOneSideMapper<AddArtworkMessageDTO, List<Map<String, String>>>,
-        userQuestionMapper: IBrownieOneSideMapper<Map<String, Any?>, ArtworkDTO>,
+        saveUserQuestionMapper: IBrownieOneSideMapper<CreateOutfitDTO, Map<String, Any?>>,
+        addArtworkMessageMapper: IBrownieOneSideMapper<AddMessageDTO, List<Map<String, String>>>,
+        userQuestionMapper: IBrownieOneSideMapper<Map<String, Any?>, OutfitDTO>,
         @IoDispatcher dispatcher: CoroutineDispatcher
-    ): IArtworkDataSource = ArtworkDataSourceImpl(
+    ): IOutfitDataSource = OutfitDataSourceImpl(
         firestore,
         saveUserQuestionMapper,
         addArtworkMessageMapper,
