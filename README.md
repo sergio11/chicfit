@@ -98,57 +98,56 @@ For more information, check out the [Brownie UI Library on GitHub](https://githu
 
 Here are some screenshots to showcase the app's design and features.
 
+<p>
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_5.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_6.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_7.png" />
+</p>
+
+<p>
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_8.png" />
+   &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_9.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_14.png" />
+</p>
+
+<p>
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_15.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_16.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_17.png" />
+</p>
+
+<p>
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_13.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_10.png" />
+  &nbsp;&nbsp;&nbsp;
+   <img width="250px" loading="lazy" src="doc/screenshots/picture_11.png" />
+</p>
+
+<p>
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_12.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_18.png" />
+  &nbsp;&nbsp;&nbsp;
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_19.png" />
+</p>
 
 <p>
   <img width="250px" loading="lazy" src="doc/screenshots/picture_1.png" />
   &nbsp;&nbsp;&nbsp;
   <img width="250px" loading="lazy" src="doc/screenshots/picture_2.png" />
   &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_3.png" />
-</p>
-
-<p>
   <img width="250px" loading="lazy" src="doc/screenshots/picture_4.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_5.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_6.png" />
 </p>
 
 <p>
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_7.png" />
-   &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_8.png" />
-   &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_9.png" />
-</p>
-
-<p>
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_14.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_15.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_16.png" />
-</p>
-
-<p>
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_17.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_13.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_10.png" />
-</p>
-
-<p>
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_11.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_12.png" />
-  &nbsp;&nbsp;&nbsp;
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_18.png" />
-</p>
-
-<p>
-  <img width="250px" loading="lazy" src="doc/screenshots/picture_19.png" />
+  <img width="250px" loading="lazy" src="doc/screenshots/picture_3.png" />
 </p>
 
 
