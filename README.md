@@ -24,6 +24,8 @@ Whether you're preparing for a **casual day** 🏖️ or dressing up for a **spe
   <img width="250px" src="doc/screenshots/previewed/image5.jpeg" />
 </p>
 
+Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
+
 ## 🚀 Key Features
 
 - **AI-Powered Fashion Advice** 🤖👗: Use ChicFit’s advanced AI to analyze your wardrobe and suggest stylish outfits based on your preferences and current trends.
