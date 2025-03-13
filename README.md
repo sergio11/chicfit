@@ -6,6 +6,9 @@
 
 Whether you're preparing for a **casual day** 🏖️ or dressing up for a **special event** 🎂, ChicFit ensures you always look your best. It makes your **fashion decisions** smarter, easier, and more **confidence-boosting** than ever! 💃✨
 
+I would like to extend my heartfelt thanks to the creator of **[Perceive - Point. Ask. Learn.](https://github.com/technophilist/Perceive)**. The innovative work and open-source contribution have been a true inspiration for this project. The powerful AI capabilities and user-centric design of **Perceive** served as a foundation for integrating the **Gemini SDK** into my own app. I am deeply grateful for the knowledge and inspiration I've gained from their work. Thank you for helping me take this project to new heights!
+
+This app, **ChicFit**, includes images and resources designed by [Freepik](https://www.freepik.com). We would like to acknowledge and thank Freepik for their incredible design assets. The images used in the app are provided with attribution, as required by Freepik's licensing terms. For more information on Freepik's resources, please visit [www.freepik.com](https://www.freepik.com).
 
 <p align="center">
   <img src="https://img.shields.io/badge/Android%20Studio-3DDC84.svg?style=for-the-badge&logo=android-studio&logoColor=white" />
@@ -201,7 +204,7 @@ ChicFit is developed and maintained by Sergio Sánchez Sánchez (Dream Software)
 
 ## Acknowledgements 🙏
 
- - Special thanks to **technophilist** for the Perceive app, which served as a source of inspiration for this project. Visit [Perceive](https://github.com/technophilist/Perceive).
+ - I would like to extend my heartfelt thanks to the creator of **[Perceive - Point. Ask. Learn.](https://github.com/technophilist/Perceive)**. The innovative work and open-source contribution have been a true inspiration for this project. The powerful AI capabilities and user-centric design of **Perceive** served as a foundation for integrating the **Gemini SDK** into my own app. I am deeply grateful for the knowledge and inspiration I've gained from their work. Thank you for helping me take this project to new heights!. Thank you once again for inspiring this project and contributing to the broader AI and open-source communities!
 
 - We express our deep appreciation to [Freepik](https://www.freepik.es/) for generously providing the resources used in this project.
 
